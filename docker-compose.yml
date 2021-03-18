@@ -1,0 +1,39 @@
+version: '3'
+services:
+    mongodb:
+        container_name: depositsdb
+        image: mongo
+        ports:
+            - '27017:27017'
+        volumes:
+            - mongodb_volume:/data/db
+    api:
+        container_name: trackmydeposits_api
+        build:
+            dockerfile: Dockerfile
+            context: ./server
+        volumes:
+            - ./server:/app
+        ports:
+            - '4000:${PORT}'
+        environment:
+            NODE_ENV: '${NODE_ENV}'
+            PORT: ${PORT}
+            MONGO_URI: '${MONGO_URI}'
+            API_VERSION: '${API_VERSION}'
+            JWT_SECRET: '${JWT_SECRET}'
+            JWT_EXPIRES_IN: '${JWT_EXPIRES_IN}'
+            LOG_OPERATIONAL_ERRORS: ${LOG_OPERATIONAL_ERRORS}
+            JWT_COOKIE_EXPIRES_IN: ${JWT_COOKIE_EXPIRES_IN}
+            TESTS_TARGET_HOST: '${TESTS_TARGET_HOST}'
+            EMAIL_FROM: '${EMAIL_FROM}'
+            EMAIL_USERNAME: '${EMAIL_USERNAME}'
+            EMAIL_PASSWORD: '${EMAIL_PASSWORD}'
+            EMAIL_HOST: '${EMAIL_HOST}'
+            EMAIL_PORT: ${EMAIL_PORT}
+            CLIENT_HOST: '${CLIENT_HOST}'
+        depends_on:
+            - mongodb
+
+volumes:
+    mongodb_volume:

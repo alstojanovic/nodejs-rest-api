@@ -1,0 +1,14 @@
+#!/bin/bash
+if [ $# -eq 0 ]
+then
+    echo "Shutting down server..."
+    docker-compose --env-file config.env down
+
+else
+    if [ "$1" == "--test" ]
+    then
+        echo "Shutting down test mode server..."
+        docker-compose --env-file config.test.env -f docker-compose.test.yml down
+
+    fi
+fi

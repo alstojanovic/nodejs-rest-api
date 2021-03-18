@@ -1,0 +1,19 @@
+#!/bin/bash
+if [ $# -eq 0 ]
+then
+    echo "Starting server..."
+    docker-compose --env-file config.env up -d
+
+    echo "Opening logs..."
+    docker logs -f trackmydeposits_api
+
+else
+    if [ "$1" == "--test" ]
+    then
+        echo "Starting server in test mode..."
+        docker-compose --env-file config.test.env  -f docker-compose.test.yml up -d
+
+        echo "Opening logs..."
+        docker logs -f trackmydeposits_api_test
+    fi
+fi
