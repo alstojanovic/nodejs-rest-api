@@ -3,7 +3,7 @@
 
 # Node.js REST API ( With Express and MongoDB )
 
-_This guide will teach you how to build a fully functional REST API with patterns and recipes on how to use Node.JS and other technologies in this architecture pattern. It's purpuose is to help anyone starting their software development journey or Junior developers sail into the Medior seas._
+_This guide will teach you how to build a fully functional REST API with patterns and recipes on how to use Node.JS and other technologies in this architecture pattern. It's purpose is to help anyone starting their software development journey or Junior developers sail into the Medior seas._
 
 _What you will learn in this project:_
 
